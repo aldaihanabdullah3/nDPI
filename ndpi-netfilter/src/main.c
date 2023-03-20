@@ -1642,6 +1642,7 @@ ndpi_mt(const struct sk_buff *skb, struct xt_action_param *par)
 		ct_ndpi->proto.app_protocol = proto.app_protocol;
 		ct_ndpi->proto.master_protocol = proto.master_protocol;
 		c_proto->proto = pack_proto(proto);
+		ct_ndpi->risk = flow->risk;
 
 		ndpi_host_info(ct_ndpi);
 
@@ -1698,6 +1699,7 @@ ndpi_mt(const struct sk_buff *skb, struct xt_action_param *par)
 			    ct_ndpi->proto.master_protocol = proto.master_protocol;
 			    ct_ndpi->confidence = confidence = flow->confidence;
 			    c_proto->proto = pack_proto(proto);
+				ct_ndpi->risk = flow->risk;
 			}
 		    	if(_DBG_TRACE_DDONE)
 		    	    packet_trace(skb,ct,ct_ndpi,"dpi_done ","%s %d, free flow",

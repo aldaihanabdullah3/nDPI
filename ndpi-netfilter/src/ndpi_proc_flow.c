@@ -341,6 +341,8 @@ ssize_t ndpi_dump_acct_info(struct ndpi_net *n,
 	    }
 	  }
 	}
+	
+	l += snprintf(&buf[l],buflen-l," R=%llu",ct->risk);
 	buf[l++] = '\n';
 	buf[l] = 0;
 	n->str_buf_len = l; 

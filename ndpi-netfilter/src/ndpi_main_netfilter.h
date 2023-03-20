@@ -200,6 +200,7 @@ struct nf_ct_ext_ndpi {
 	uint8_t			l4_proto;	// 1
 	uint8_t			confidence;	// 1
 #endif
+	uint64_t		risk;
 	uint16_t		ja3s,ja3c,tlsv,tlsfp;
 						// offset+1 in flow_opt
 
