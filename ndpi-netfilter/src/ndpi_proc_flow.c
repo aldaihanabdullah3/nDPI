@@ -341,8 +341,24 @@ ssize_t ndpi_dump_acct_info(struct ndpi_net *n,
 	    }
 	  }
 	}
+	if(ct->risk != 0) {
+		uint32_t i = 0;
+		uint8_t flag = false;
+
+		for(i = 0; i < NDPI_MAX_RISK; i++) {
+    	ndpi_risk_enum r = (ndpi_risk_enum)i;
+			if(NDPI_ISSET_BIT(ct->risk, r)) {
+				if(flag == false){
+					l += snprintf(&buf[l],buflen-l," R=%u",i);
+					flag = true;
+				}
+				else {
+					l += snprintf(&buf[l],buflen-l,",%u",i);
+				}
+			}
+		}
+	}
 	
-	l += snprintf(&buf[l],buflen-l," R=%llu",ct->risk);
 	buf[l++] = '\n';
 	buf[l] = 0;
 	n->str_buf_len = l; 
